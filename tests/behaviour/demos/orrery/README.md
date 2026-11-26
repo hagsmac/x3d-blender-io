@@ -105,8 +105,6 @@ Play and graph (`source/behaviour_play.py`, `behaviour_graph.py`, `behaviour_nod
   DEFs), passed to the recorder as `--click-plan FILE` after the positional arguments (separate from `--keys`); the
   recorder sweeps the pointer until that sensor reports `isOver`, clicks it, waits 3.5 s, and does nothing different
   when there is no plan; `check` rejects a name that is not a pointing sensor of the world.
-- `tools/behaviour_demo.py` and `DemoJudgeTests`: an optional `idle` list, in its own commit; the orrery does not use it
-  (kept at the owner's word).
 - `tests/test_behaviour_sim.py`: `PositionChaser2D` and `PositionInterpolator2D` left the `unjudged` list.
 
 Not touched: the importer, the exporter, `ir.py`, `validate.py`, `mapping/*`, the version.
@@ -130,8 +128,7 @@ Not touched: the importer, the exporter, `ir.py`, `validate.py`, `mapping/*`, th
 
 1. **The recorder clicked one spot, so a world could have one click chain.** `run_judge` and `DemoJudgeTests` need an
    X_ITE event on every compared stream. Evidence: the first recording (the pointer found Gale first) left 18 of 37
-   streams empty. Answer: `click_plan` (one hunted click per named sensor). An optional `idle` list exists too and is
-   unused here.
+   streams empty. Answer: `click_plan` (one hunted click per named sensor).
 2. **A ROUTE into a TextureTransform never reached Play.** `behaviour_graph.BINDING_OF` had no entry for it and the
    importer neither makes a Mapping node (it bakes the transform into the UVs) nor records the node's DEF. Evidence:
    import log "TextureTransform 'ChartMap' is the end of a ROUTE but is neither a Blender object nor a top-level
